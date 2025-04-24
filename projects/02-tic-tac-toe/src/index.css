@@ -1,0 +1,131 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-width: 320px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.board {
+  width: fit-content;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.board h1 {
+  color: #eee;
+  margin-bottom: 18px;
+}
+
+.board .game {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.square {
+  border: 2px solid #eee;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.turn {
+  display: flex;
+  justify-content: center;
+  margin: 15px auto;
+  width: fit-content;
+  position: relative;
+  border-radius: 15px;
+}
+
+.turn .square,
+.winner .square {
+  width: 70px;
+  height: 70px;
+  pointer-events: none;
+  border-color: transparent;
+}
+
+.square.is-selected {
+  color: #fff;
+  background: #09f;
+}
+
+.winner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.winner .win {
+  display: flex;
+  gap: 15px;
+  margin: 0 auto;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.winner .text {
+  background: #111;
+  height: 300px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  border: #09f 2px solid;
+  border-radius: 15px;
+}
+
+.board button {
+  color: #eee;
+  padding: 10px 20px;
+  margin: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: #eee 2px solid;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100px;
+  transition: 0.2s;
+}
+
+.board button:hover {
+  background: #09f;
+  color: #eee;
+}
