@@ -1,3 +1,5 @@
+import { COLS, ROWS } from '../constants.js'
+
 export const checkWinner = (boardToCheck) => {
         //horizontales
         for (let row = 0; row < ROWS; row++) {
@@ -60,6 +62,6 @@ export const checkWinner = (boardToCheck) => {
       }
 
   //funcion para verificar empate
-  const checkGameOver = (boardToCheck) => {
+export const checkGameOver = (boardToCheck) => {
     return boardToCheck.every((cell) => cell !== null)
   }

@@ -2,15 +2,24 @@ import { useState } from 'react'
 import { COLS, ROWS, TURNS } from './constants.js'
 import { Cell } from './components/Cell.jsx'
 import { checkWinner, checkGameOver } from './logic/board.js'
-import './index.css'
 import { ModalWinner } from './components/ModalWinner.jsx'
+import './index.css'
+import { saveGameToStorage, resetGameStorage } from './logic/storage/index.js'
 
 
 function App() {
   //inicializamos el tablero con un array de 42 posiciones (6 filas x 7 columnas)
-  const [board, setBoard] = useState(Array.from({length: ROWS * COLS}, () => null))
+  const [board, setBoard] = useState(() => {
+    const boardFromStorage = window.localStorage.getItem('board') // es lento sincrono y bloquea
+    return boardFromStorage ? JSON.parse(boardFromStorage) : 
+    Array.from({length: ROWS * COLS}, () => null)
+  })
+
   //inicializamos el turno con el jugador 1 (🔴)
-  const [turn, setTurn] = useState(TURNS.RED)
+  const [turn, setTurn] = useState(() => {
+    const turnFromStorage = window.localStorage.getItem('turn') // es lento sincrono y bloquea
+    return turnFromStorage ? turnFromStorage : TURNS.RED
+  })
 
   //inicializamos el ganador con null
   const [winner, setWinner] = useState(null)
@@ -21,6 +30,7 @@ function App() {
     setBoard(Array.from({length: ROWS * COLS}, () => null))
     setTurn(TURNS.RED)
     setWinner(null)
+    resetGameStorage() //reiniciamos el local storage
   }
  
 
@@ -48,6 +58,7 @@ function App() {
     //cambiamos el turno
     const newTurn = turn === TURNS.RED ? TURNS.YELLOW : TURNS.RED
     setTurn(newTurn)
+    saveGameToStorage(newBoard, newTurn) //guardamos el juego en el local storage
 
     //chequeamos si hay un ganador
     const newWinner = checkWinner(newBoard)
