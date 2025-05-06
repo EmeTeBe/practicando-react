@@ -3,8 +3,9 @@ import { COLS, ROWS, TURNS } from './constants.js'
 import { Cell } from './components/Cell.jsx'
 import { checkWinner, checkGameOver } from './logic/board.js'
 import { ModalWinner } from './components/ModalWinner.jsx'
-import './index.css'
 import { saveGameToStorage, resetGameStorage } from './logic/storage/index.js'
+import confetti from 'canvas-confetti'
+import './index.css'
 
 
 function App() {
@@ -64,6 +65,11 @@ function App() {
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
       setWinner(newWinner)
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      })
     } else if (checkGameOver(newBoard)) {
       setWinner(false) // empate
     }
