@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { FiltersProvider } from "./constext/filters.jsx";
+import { FiltersProvider } from "./context/filters.jsx";
 import "./index.css";
 import App from "./App.jsx";
 
