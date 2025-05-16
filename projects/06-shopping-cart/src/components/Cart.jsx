@@ -32,15 +32,17 @@ export const Cart = () => {
       <input id={cartCheckboxId} type="checkbox" hidden />
 
       <aside className="cart">
-        <ul>
-          {cart.map((item) => (
-            <CartItem
-              key={item.id}
-              addToCart={() => addToCart(item)}
-              {...item}
-            />
-          ))}
-        </ul>
+        <div className="cart-content">
+          <ul>
+            {cart.map((item) => (
+              <CartItem
+                key={item.id}
+                addToCart={() => addToCart(item)}
+                {...item}
+              />
+            ))}
+          </ul>
+        </div>
         <button className="clear-cart" onClick={clearCart}>
           <ClearCartIcon />
         </button>
